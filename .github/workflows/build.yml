@@ -58,8 +58,17 @@ jobs:
           utcOffset: "+09:00"
         if: always()
 
+      - name: Set Current Time
+          uses: 1466587594/get-current-time@v1
+          id: current-time
+          with:
+            format: YYYY.MM
+            utcOffset: "+09:00"
+          if: always()
+
       - name: Build with Gradle and Jib
         env:
+           VERSION: "${{ steps.current-time.outputs.formattedTime }}.${{github.run_number}}"
            USERNAME: ${{secrets.USERNAME}}
            TOKEN: ${{secrets.TOKEN}}
            GITHUB_TOKEN: ${{ secrets.TOKEN }}  # Needed to get PR information, if any
