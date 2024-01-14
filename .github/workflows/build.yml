@@ -49,6 +49,14 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+          
+      - name: Set Current Time
+        uses: 1466587594/get-current-time@v1
+        id: current-time
+        with:
+          format: YYYY.MM
+          utcOffset: "+09:00"
+        if: always()
 
       - name: Build with Gradle and Jib
         env:
