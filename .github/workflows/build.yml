@@ -59,12 +59,12 @@ jobs:
         if: always()
 
       - name: Set Current Time
-          uses: 1466587594/get-current-time@v1
-          id: current-time
-          with:
-            format: YYYY.MM
-            utcOffset: "+09:00"
-          if: always()
+        uses: 1466587594/get-current-time@v1
+        id: current-time
+        with:
+          format: YYYY.MM
+          utcOffset: "+09:00"
+        if: always()
 
       - name: Build with Gradle and Jib
         env:
