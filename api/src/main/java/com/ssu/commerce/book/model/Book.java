@@ -77,15 +77,6 @@ public class Book {
         this.bookState = bookState;
     }
 
-    public boolean rental() {
-        if(isPossibleRentalState()) {
-            updateBookState(BookState.LOAN_PROCESSING);
-            return true;
-        }
-
-        return false;
-    }
-
     boolean isPossibleRentalState() {
         return bookState == BookState.REGISTERED || bookState == BookState.RETURN;
     }
