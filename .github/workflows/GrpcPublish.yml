@@ -50,4 +50,4 @@ jobs:
           USERNAME: ${{secrets.USERNAME}}
           TOKEN: ${{secrets.TOKEN}}
           GITHUB_TOKEN: ${{ secrets.TOKEN }}  # Needed to get PR information, if any
-        run: ./gradlew :grpc:jib
+        run: ./gradlew :grpc:publish
