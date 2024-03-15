@@ -44,10 +44,10 @@ jobs:
           utcOffset: "+09:00"
         if: always()
 
-      - name: Build with Gradle and Jib
+      - name: Build with Gradle and Publish Grpc
         env:
           VERSION: "${{ steps.current-time.outputs.formattedTime }}.${{github.run_number}}"
           USERNAME: ${{secrets.USERNAME}}
           TOKEN: ${{secrets.TOKEN}}
           GITHUB_TOKEN: ${{ secrets.TOKEN }}  # Needed to get PR information, if any
-        run: ./gradlew :grpc:jib
+        run: ./gradlew :grpc:publish
