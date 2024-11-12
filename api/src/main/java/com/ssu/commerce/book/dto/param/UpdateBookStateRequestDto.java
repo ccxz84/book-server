@@ -10,6 +10,6 @@ import java.util.UUID;
 @Getter
 @Builder
 @AllArgsConstructor
-public class RentalBookRequestDto extends AbstractLockableObject {
+public class UpdateBookStateRequestDto extends AbstractLockableObject {
     private UUID bookId;
 }

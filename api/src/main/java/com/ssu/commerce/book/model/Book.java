@@ -94,7 +94,25 @@ public class Book {
         return this;
     }
     public void updateBookState(BookState bookState) {
-        this.bookState = bookState;
+        if (!isWithinBorrowDateRange()) {
+            this.bookState = BookState.DISSHAREABLE; // 어떤 상태 값이 들어와도 대여 가능 날짜 범위 벗어나면 대여 불가 상태가 됨.
+        } else {
+            this.bookState = bookState;
+        }
+    }
+
+    public boolean canUpdateToState(BookState desiredState) {
+        if (desiredState == BookState.SHARING) {
+            return !(this.bookState == BookState.SHARING || this.bookState == BookState.DISSHAREABLE);
+        } else if (desiredState == BookState.SHARABLE) {
+            return (this.bookState != BookState.DISSHAREABLE);
+        }
+        return false;
+    }
+
+    private boolean isWithinBorrowDateRange() {
+        LocalDateTime now = LocalDateTime.now();
+        return !now.isBefore(startBorrowDay) && !now.isAfter(endBorrowDay);
     }
 
     public boolean rental() {

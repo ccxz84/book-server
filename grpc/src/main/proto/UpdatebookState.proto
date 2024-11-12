@@ -6,14 +6,8 @@ option java_multiple_files = true;
 option java_package = "com.ssu.commerce.grpc";
 
 service UpdateBookState {
-  rpc updateBookState (UpdateBookStateRequest) returns (google.protobuf.Empty);
   rpc rentalBook (RentalBookRequest) returns (RentalBookResponse);
-}
-
-message UpdateBookStateRequest {
-  string token = 1;
-  BookState bookState = 2;
-  repeated string id = 3;
+  rpc returnBook (ReturnBookRequest) returns (ReturnBookResponse);
 }
 
 message RentalBookRequest {
@@ -22,6 +16,15 @@ message RentalBookRequest {
 }
 
 message RentalBookResponse {
+  string message = 1;
+}
+
+message ReturnBookRequest {
+  string token = 1;
+  repeated string id = 2;
+}
+
+message ReturnBookResponse {
   string message = 1;
 }
 
